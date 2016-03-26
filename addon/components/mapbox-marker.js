@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   layout: layout,
   symbol: '',
   color: '#444444',
+  draggable: false,
   marker: null,
 
   isLoaded: Ember.computed('map', 'marker', function() {
@@ -43,7 +44,8 @@ export default Ember.Component.extend({
         'marker-color': this.get('color'),
         'marker-size': this.get('size'),
         'marker-symbol': this.get('symbol')
-      })
+      }),
+      draggable: this.get('draggable')
     });
     marker.bindPopup(this.get('popup-title'));
 
