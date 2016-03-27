@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   symbol: '',
   color: '#444444',
   draggable: false,
+  hasPopup: false,
   marker: null,
 
   isLoaded: Ember.computed('map', 'marker', function() {
@@ -47,7 +48,10 @@ export default Ember.Component.extend({
       }),
       draggable: this.get('draggable')
     });
-    marker.bindPopup(this.get('popup-title'));
+
+    if (this.get('hasPopup')) {
+      marker.bindPopup(this.get('popup-title'));
+    }
 
     MARKER_EVENTS.forEach((event) => {
       marker.on(event, (e) => this.sendAction('on' + event, marker, e));
