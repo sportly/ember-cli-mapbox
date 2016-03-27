@@ -39,6 +39,14 @@ export default Ember.Component.extend({
     }
   }),
 
+  coordinatesChange: Ember.observer('coordinates', function() {
+    let marker = this.get('marker');
+    if (marker === null) {
+      return;
+    }
+    marker.setLatLng(this.get('coordinates'));
+  }),
+
   setup: Ember.on('init', function() {
     let marker = L.marker(this.get('coordinates'), {
       icon: L.mapbox.marker.icon({
