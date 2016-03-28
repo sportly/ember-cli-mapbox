@@ -44,4 +44,13 @@ export default Ember.Component.extend({
     }
     map.setView(this.get('center'));
   }),
+
+  zoomChange: Ember.observer('zoom', function() {
+    let map = this.get('map');
+    if (map === null) {
+      return;
+    }
+    map.setView(this.get('center'), this.get('zoom'));
+  }),
+
 });
