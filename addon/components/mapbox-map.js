@@ -35,5 +35,13 @@ export default Ember.Component.extend({
       // Set
       this.set('map', map);
     });
-  })
+  }),
+
+  centerChange: Ember.observer('center', function() {
+    let map = this.get('map');
+    if (map === null) {
+      return;
+    }
+    map.setView(this.get('center'));
+  }),
 });
